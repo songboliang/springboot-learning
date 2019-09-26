@@ -38,6 +38,9 @@ public class SaticScheduleTask {
                 Random().nextLong() + new SimpleDateFormat("HH:mm:ss").format(new Date()));
     }
 
+    /**
+     * fixedDelay上一次 结束时间点之后 每50秒执行一次
+     */
     @Scheduled(fixedDelay = 50000)
     public void timerToReportCount(){
         for (int i = 0; i < 10; i++){
@@ -45,6 +48,11 @@ public class SaticScheduleTask {
         }
     }
 
+    /**
+     * initialDelay延迟50秒执行
+     * fixRate每6秒执行一次
+     *
+     */
     @Scheduled(initialDelay = 50000,fixedRate = 6000)
     public void timerToReport(){
         for (int i = 0; i < 10; i++){
