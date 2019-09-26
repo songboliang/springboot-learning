@@ -3,6 +3,8 @@ package com.springboot.learning.es;
 
 
 import java.io.IOException;
+import java.net.InetAddress;
+import java.net.UnknownHostException;
 import java.util.Collections;
 
 import org.apache.http.HttpEntity;
@@ -20,6 +22,9 @@ import org.elasticsearch.client.RestClient;
 import org.elasticsearch.client.RestClientBuilder;
 import org.junit.Before;
 import org.junit.Test;
+import org.springframework.boot.autoconfigure.h2.H2ConsoleProperties;
+
+import static org.springframework.boot.autoconfigure.h2.H2ConsoleProperties.*;
 
 /**
  * Elasticserach RestClient示例
@@ -45,7 +50,6 @@ public class Rest {
                         return httpClientBuilder.setDefaultCredentialsProvider(credentialsProvider);
                     }
                 }).build();
-
     }
 
     @Before
@@ -111,6 +115,18 @@ public class Rest {
         String endpoint = "/megacorp/employee/_search";
         Response response = restClient.performRequest(method,endpoint);
         System.out.println(EntityUtils.toString(response.getEntity()));
+    }
+
+    /**
+     * 删除文档
+     */
+    @Test
+    public void test3() throws Exception {
+
+
+        String method = "DELETE";
+        String endpoint = "/megacorp/employee/3";
+        Response response = restClient.performRequest(method,endpoint);
     }
 
 
